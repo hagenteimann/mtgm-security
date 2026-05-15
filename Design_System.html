@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System v1.0 — MTGM Sicherheitsdienst</title>
+    <link rel="stylesheet" href="public/css/main.css">
+    <style>
+        :root {
+            --ds-accent: var(--color-primary-300);
+        }
+        
+        body { background: #fff; color: var(--color-neutral-900); }
+
+        .cd-header {
+            background: var(--color-neutral-900);
+            color: #fff;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-squircle);
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            color: var(--color-primary-300);
+        }
+
+        .version-badge { 
+            background: var(--ds-accent); 
+            color: #ffffff;
+            padding: 4px 12px; 
+            border-radius: 100px; 
+            font-size: 0.9rem; 
+            font-weight: 800; 
+            vertical-align: middle; 
+            margin-left: 10px; 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            transform: translateY(-2px);
+        }
+
+        main.container { padding: 100px var(--space-300); }
+        section { margin-bottom: 120px; }
+        h2 { font-size: 2.5rem; margin-bottom: 50px; border-bottom: 2px solid var(--color-neutral-100); padding-bottom: 20px; }
+
+        /* Color Scales */
+        .color-group { margin-bottom: 60px; }
+        .color-group h3 { margin-bottom: 24px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--color-neutral-500); }
+        
+        .scale-flex { display: flex; gap: 12px; flex-wrap: wrap; }
+        .scale-box { flex: 1; min-width: 120px; text-align: center; }
+        .swatch-box { height: 80px; border-radius: var(--radius-subtle); margin-bottom: 12px; border: 1px solid rgba(0,0,0,0.05); }
+        .scale-box code { font-size: 0.75rem; color: var(--color-neutral-400); font-weight: 600; display: block; }
+
+        /* Typography */
+        .typo-spec { margin-bottom: 40px; border-left: 4px solid var(--color-neutral-100); padding-left: 30px; }
+        .typo-label { font-size: 0.75rem; font-weight: 800; color: var(--ds-accent); text-transform: uppercase; margin-bottom: 8px; display: block; }
+        
+        /* Bento Logic */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .bento-item {
+            background: var(--color-neutral-050);
+            border: 1px solid var(--color-neutral-100);
+            border-radius: var(--radius-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--color-neutral-400);
+        }
+
+        /* Mobile Instructions */
+        .mobile-instruction {
+            background: #f8fafc;
+            border-radius: var(--radius-base);
+            padding: 40px;
+            border: 1px solid #e2e8f0;
+        }
+        .mobile-instruction ul { list-style: none; }
+        .mobile-instruction li { margin-bottom: 16px; padding-left: 24px; position: relative; }
+        .mobile-instruction li::before { content: '→'; position: absolute; left: 0; color: var(--ds-accent); font-weight: 800; }
+
+        /* Animation */
+        .shimmer {
+            background: linear-gradient(90deg, #f1f5f9 25%, #f8fafc 50%, #f1f5f9 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="cd-header">
+        <!-- Socials in Header Section -->
+        <div class="social-header-bar" style="position: absolute; top: 20px; right: 40px; z-index: 10;">
+            <div class="social-links">
+                <a href="#" class="social-icon" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="#" class="social-icon" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="#" class="social-icon" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="logo-placeholder" style="background: transparent; box-shadow: none;">
+                <img src="public/images/logo-white.svg" alt="MTGM Logo" style="height: 60px;">
+            </div>
+            <h1>MTGM Design System <span class="version-badge">v1.0</span></h1>
+            <p style="font-size: 1.2rem; color: var(--color-neutral-400); max-width: 600px; margin: 20px auto 0;">Der visuelle Standard für Sicherheit, Vertrauen und professionelle Deeskalation.</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- LOGO USAGE -->
+        <section id="logos">
+            <h2>Logo Usage</h2>
+            <p style="margin-bottom: 40px;">Die Konsistenz des Logos ist entscheidend für den Wiedererkennungswert. Wir nutzen zwei Hauptvarianten:</p>
+            
+            <div class="grid-3col">
+                <div class="card" style="text-align: center;">
+                    <span class="typo-label">Blue Logo (on White BG)</span>
+                    <div style="background: #ffffff; padding: 40px; border-radius: var(--radius-base); border: 1px solid var(--color-neutral-100); margin: 20px 0;">
+                        <img src="public/images/logo-blue.svg" alt="MTGM Logo Blue" style="height: 50px;">
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--color-neutral-500);">Standard-Anwendung für helle Sektionen.</p>
+                </div>
+                <div class="card" style="text-align: center; background: var(--color-neutral-900); color: #fff;">
+                    <span class="typo-label" style="color: var(--color-primary-200);">White Logo (on Darkest Blue)</span>
+                    <div style="background: var(--color-primary-500); padding: 40px; border-radius: var(--radius-base); margin: 20px 0;">
+                        <img src="public/images/logo-white.svg" alt="MTGM Logo White" style="height: 50px;">
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--color-neutral-400);">Exklusive Anwendung auf dem dunkelsten Blau (<code>--color-primary-500</code>) für maximalen Kontrast.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- COLORS -->
+        <section id="colors">
+            <h2>Farbwelt & Identity</h2>
+            <p style="margin-bottom: 40px;">Unsere Farben vermitteln Seriosität (Blau), Klarheit (Weiß) und Struktur (Grau). Das neue "Deep Navy Blue" ersetzt das veraltete Web-Blau für einen Premium-Look.</p>
+            
+            <div class="color-group">
+                <h3>Primary: Security Blue</h3>
+                <div class="scale-flex">
+                    <div class="scale-box"><div class="swatch-box" style="background: var(--color-primary-100);"></div><code>100 (Subtle)</code></div>
+                    <div class="scale-box"><div class="swatch-box" style="background: var(--color-primary-200);"></div><code>200 (Light)</code></div>
+                    <div class="scale-box"><div class="swatch-box" style="background: var(--color-primary-300); border: 2px solid var(--color-neutral-900);"></div><strong>300 (Base)</strong></div>
+                    <div class="scale-box"><div class="swatch-box" style="background: var(--color-primary-400);"></div><code>400 (Dark)</code></div>
+                    <div class="scale-box"><div class="swatch-box" style="background: var(--color-primary-500);"></div><code>500 (Deep)</code></div>
+                </div>
+            </div>
+
+            <div class="color-group">
+                <h3>Neutrals: Slate Grays</h3>
+                <div class="scale-flex">
+                    <div class="scale-box"><div class="swatch-box" style="background: var(--color-neutral-100);"></div><code>100 (BG)</code></div>
+                    <div class="scale-box"><div class="swatch-box" style="background: var(--color-neutral-300);"></div><code>300 (Border)</code></div>
+                    <div class="scale-box"><div class="swatch-box" style="background: var(--color-neutral-500);"></div><code>500 (Text)</code></div>
+                    <div class="scale-box"><div class="swatch-box" style="background: var(--color-neutral-700);"></div><code>700 (Heading)</code></div>
+                    <div class="scale-box"><div class="swatch-box" style="background: var(--color-neutral-900);"></div><code>900 (Black)</code></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TYPOGRAPHY -->
+        <section id="typography">
+            <h2>Typografie</h2>
+            <div class="typo-spec">
+                <span class="typo-label">Headline H1 (Outfit Bold)</span>
+                <h1 style="font-size: 4rem;">Maximale Sicherheit</h1>
+                <code>Outfit / 800 / -0.04em</code>
+            </div>
+            <div class="typo-spec">
+                <span class="typo-label">Headline H2 (Outfit SemiBold)</span>
+                <h2 style="font-size: 2.5rem; border: none; margin: 0;">Professionelle Deeskalation</h2>
+                <code>Outfit / 700 / -0.03em</code>
+            </div>
+            <div class="typo-spec">
+                <span class="typo-label">Body Text (Inter Regular)</span>
+                <p style="font-size: 1.1rem; max-width: 600px;">Wir setzen auf Psychologie statt Brute-Force. Unsere Mitarbeiter sind Experten in der Kommunikation und Deeskalation.</p>
+                <code>Inter / 400 / 1.6 Line-Height</code>
+            </div>
+            <div class="typo-spec" style="background: var(--color-neutral-900); color: #fff; padding: 40px; border-radius: var(--radius-base); margin-top: 40px;">
+                <span class="typo-label" style="color: var(--color-primary-200);">Contrast Display (Space Grotesk Bold)</span>
+                <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 3rem; margin-bottom: 0; border: none; letter-spacing: -0.03em;">KOMPETENZ DURCH DISZIPLIN</h2>
+                <p style="font-size: 0.9rem; color: var(--color-neutral-400); margin-top: 10px;">Einsatz für architektonisch-klare Slogans und technische USPs.</p>
+                <code>Space Grotesk / 700 / Architectural Contrast</code>
+            </div>
+        </section>
+
+        <!-- FUNNEL STRATEGIE -->
+        <section id="funnel">
+            <h2>Funnel-Strategie (Best Practice)</h2>
+            <p style="margin-bottom: 40px;">Die Landingpage folgt einem psychologisch optimierten Funnel, um kalte Besucher in qualifizierte Anfragen zu verwandeln.</p>
+            
+            <div class="funnel-container" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                <!-- Step 1 -->
+                <div class="card" style="width: 300px; text-align: center; border-bottom: 4px solid var(--color-primary-300);">
+                    <span class="typo-label">1. AWARENESS (Hero)</span>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">Hook: Maximale Sicherheit.<br>Trust: Weltmeister-Expertise.</p>
+                </div>
+                <div style="width: 2px; height: 20px; background: var(--color-neutral-200);"></div>
+                
+                <!-- Step 2 -->
+                <div class="card" style="width: 300px; text-align: center; border-bottom: 4px solid var(--color-primary-300);">
+                    <span class="typo-label">2. INTEREST (Services)</span>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">Kompakte Cards der Leistungen.<br>Fokus: Lösung von Ängsten.</p>
+                </div>
+                <div style="width: 2px; height: 20px; background: var(--color-neutral-200);"></div>
+
+                <!-- Step 3 -->
+                <div class="card" style="width: 300px; text-align: center; border-bottom: 4px solid var(--color-primary-300);">
+                    <span class="typo-label">3. DESIRE (USP)</span>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">Warum MTGM? (Psychologie).<br>Bento-Galerie (Visual Proof).</p>
+                </div>
+                <div style="width: 2px; height: 20px; background: var(--color-neutral-200);"></div>
+
+                <!-- Step 4 -->
+                <div class="card" style="width: 300px; text-align: center; background: var(--color-primary-300); color: #fff;">
+                    <span class="typo-label" style="color: #fff;">4. ACTION (Contact)</span>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">Funnel-Formular.<br>Ziel: Kostenloses Erstgespräch.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LAYOUT PRINCIPLES -->
+            <h2>Layout Principles & Grid</h2>
+            <p style="margin-bottom: 40px;">Unsere Layouts folgen mathematischen Prinzipien, um Harmonie und Struktur zu gewährleisten.</p>
+            
+            <div class="grid-3col">
+                <div class="card">
+                    <span class="typo-label">8pt / 4pt Grid Rule</span>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Alle Abstände (Margins, Paddings) folgen einem 8px-Raster. Für Mikro-Anpassungen (z.B. Icon-Spacing) nutzen wir das 4px-Raster.</p>
+                    <div style="display: flex; gap: 8px; align-items: flex-end; margin-top: 20px;">
+                        <div style="width: 4px; height: 4px; background: var(--ds-accent); opacity: 0.5;"></div>
+                        <div style="width: 8px; height: 8px; background: var(--ds-accent);"></div>
+                        <div style="width: 16px; height: 16px; background: var(--ds-accent);"></div>
+                        <div style="width: 24px; height: 24px; background: var(--ds-accent);"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="typo-label">Goldener Schnitt (1.618)</span>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Wir nutzen den Goldenen Schnitt für Proportionen von Containern, Typografie-Skalierung und Bild-Ausschnitte.</p>
+                    <div style="display: flex; height: 60px; border-radius: 8px; overflow: hidden; margin-top: 20px; border: 1px solid var(--color-neutral-100);">
+                        <div style="width: 61.8%; background: var(--color-primary-300);"></div>
+                        <div style="width: 38.2%; background: var(--color-primary-100);"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="typo-label">Bento-Grid Limitation</span>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Bento-Grids exklusiv für <strong>Bildergalerien</strong>. Alles andere in kompakten Cards.</p>
+                </div>
+            </div>
+
+            <div class="bento-grid" style="margin-top: 40px;">
+                <div class="bento-item" style="grid-column: span 2; height: 200px;">Widescreen (16:9)</div>
+                <div class="bento-item" style="grid-row: span 2;">Portrait (4:5)</div>
+                <div class="bento-item" style="height: 200px;">Square (1:1)</div>
+                <div class="bento-item" style="height: 200px;">Square (1:1)</div>
+            </div>
+
+            <div class="mobile-instruction" style="margin-top: 60px;">
+                <h3>Mobile-First Prinzip</h3>
+                <p style="margin-bottom: 20px;"><strong>Regel:</strong> Wir entwickeln primär für das kleinste Display und erweitern das Layout progressiv für Desktop. Das sorgt für maximale Performance und Fokus auf das Wesentliche.</p>
+                <ul>
+                    <li><strong>Stacking:</strong> Ab 768px brechen alle Grid-Spalten in eine einzelne Spalte um (100% Breite).</li>
+                    <li><strong>Touch Targets:</strong> Alle Buttons und interaktiven Elemente müssen mindestens 48px hoch sein.</li>
+                    <li><strong>Font Scaling:</strong> Headlines skalieren auf Mobile um ca. 20-30% nach unten (nutze clamp() oder media queries).</li>
+                    <li><strong>Navigation:</strong> Auf Mobile wird ein Hamburger-Menü verwendet, das Full-Screen öffnet.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- DECISION LOG -->
+        <section id="decisions">
+            <h2>Design-Entscheidungen (Log)</h2>
+            <div class="mobile-instruction">
+                <section class="decision">
+                    <h3>Entscheidung: Deep Navy Rebrand</h3>
+                    <p><strong>Kategorie:</strong> Farbpalette</p>
+                    <p><strong>Entscheidung:</strong> Wechsel von Standard-Blau (#2e79b9) zu Deep Navy (#1e4e8c).</p>
+                    <p><strong>Begründung:</strong> Deep Navy wirkt seriöser, hochwertiger und weniger "Template-artig". Es vermittelt Stabilität und Premium-Sicherheit.</p>
+                    <p><strong>Datum:</strong> 2026-05-15</p>
+                    <p><strong>Anwendung:</strong> Buttons, Icons, Navigations-Akzente.</p>
+                </section>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--color-neutral-200);">
+                <section class="decision">
+                    <h3>Entscheidung: Squircle-Radien</h3>
+                    <p><strong>Kategorie:</strong> UI Shape</p>
+                    <p><strong>Entscheidung:</strong> Verwendung von 28% Radien für alle prominenten UI-Elemente.</p>
+                    <p><strong>Begründung:</strong> Squircles wirken organischer und moderner als herkömmliche Radien und sind der Standard für High-End-Interfaces in 2026.</p>
+                    <p><strong>Datum:</strong> 2026-05-15</p>
+                    <p><strong>Anwendung:</strong> Cards, Buttons, Container.</p>
+                <section class="decision">
+                    <h3>Entscheidung: Linksbündiges Hero-Layout</h3>
+                    <p><strong>Kategorie:</strong> Layout / UX</p>
+                    <p><strong>Entscheidung:</strong> Wechsel von zentriertem Layout zu linksbündiger Ausrichtung für die Hero-Sektion.</p>
+                    <p><strong>Begründung:</strong> Linksbündiger Text entspricht der natürlichen Leserichtung (F-Pattern) und wirkt moderner sowie professioneller. Es verbessert die Scanbarkeit der Key-Messages.</p>
+                    <p><strong>Datum:</strong> 2026-05-15</p>
+                    <p><strong>Anwendung:</strong> Hero-Sektion.</p>
+                </section>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--color-neutral-200);">
+                <section class="decision">
+                    <h3>Entscheidung: Kommerzielle Service-Icons</h3>
+                    <p><strong>Kategorie:</strong> Visuals / Icons</p>
+                    <p><strong>Entscheidung:</strong> Nutzung von Lucide SVG-Icons zur visuellen Unterstützung der Dienstleistungen.</p>
+                    <p><strong>Begründung:</strong> Icons fördern das schnelle Verständnis der Einsatzgebiete. Lucide bietet eine rechtssichere (MIT), minimalistische Ästhetik, die perfekt zum 8pt-Grid passt.</p>
+                    <p><strong>Datum:</strong> 2026-05-15</p>
+                    <p><strong>Anwendung:</strong> Sektion "Leistungen".</p>
+                </section>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--color-neutral-200);">
+                <section class="decision">
+                    <h3>Entscheidung: Kommerzielle Social-Icons</h3>
+                    <p><strong>Kategorie:</strong> Icons</p>
+                    <p><strong>Entscheidung:</strong> Nutzung von Lucide SVG-Icons für Social Media.</p>
+                    <p><strong>Begründung:</strong> Lucide Icons stehen unter der MIT-Lizenz und sind somit rechtssicher für kommerzielle Projekte nutzbar. Die Einbindung erfolgt als Inline-SVG (DSGVO-konform).</p>
+                    <p><strong>Datum:</strong> 2026-05-15</p>
+                    <p><strong>Anwendung:</strong> Header, Footer, Kontakt-Sektionen.</p>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--color-neutral-200);">
+                <section class="decision">
+                    <h3>Entscheidung: Bento-Grid Limitation</h3>
+                    <p><strong>Kategorie:</strong> Layout / UX</p>
+                    <p><strong>Entscheidung:</strong> Bento-Grids werden exklusiv für Bildergalerien genutzt. Dienstleistungen und informative Inhalte werden in kompakten, uniformen Cards dargestellt.</p>
+                    <p><strong>Begründung:</strong> Bento-Grids lenken bei textlastigen Inhalten oft ab. Kompakte Cards ermöglichen ein schnelleres Scannen der Leistungen, während Bento für visuelle Highlights (Bilder) ideal ist.</p>
+                    <p><strong>Datum:</strong> 2026-05-15</p>
+                    <p><strong>Anwendung:</strong> Sektion "Leistungen" vs. Sektion "Galerie".</p>
+                </section>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--color-neutral-200);">
+                <section class="decision">
+                    <h3>Entscheidung: Space Grotesk als Contrast-Font</h3>
+                    <p><strong>Kategorie:</strong> Typografie</p>
+                    <p><strong>Entscheidung:</strong> Finaler Wechsel auf 'Space Grotesk' (Bold) als künstlerische Kontrast-Schrift.</p>
+                    <p><strong>Begründung:</strong> Space Grotesk vereint technische Präzision mit einer architektonischen Eleganz. Sie wirkt weniger exzentrisch als Syne, aber charakterstärker als Sora. Sie ist die ideale Wahl für eine moderne Sicherheitsmarke.</p>
+                    <p><strong>Datum:</strong> 2026-05-15</p>
+                    <p><strong>Anwendung:</strong> Slogans, USPs, Headlines.</p>
+                </section>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--color-neutral-200);">
+                <section class="decision">
+                    <h3>Entscheidung: Font Preloading & Logo Specs</h3>
+                    <p><strong>Kategorie:</strong> Performance / Branding</p>
+                    <p><strong>Entscheidung:</strong> Alle Google Fonts müssen per 'preload' im HTML Header geladen werden. Logos sind fix definiert: Blau auf Weiß, Weiß EXKLUSIV auf dem dunkelsten Blau (<code>--color-primary-500</code>).</p>
+                    <p><strong>Begründung:</strong> Preloading verhindert Layout Shifts (CLS) und sorgt für schnellere Ladezeiten. Die Logo-Vorgaben sichern den maximalen Kontrast und die visuelle Stringenz der Marke.</p>
+                    <p><strong>Datum:</strong> 2026-05-15</p>
+                    <p><strong>Anwendung:</strong> index.html, CSS, Header.</p>
+                <section class="decision">
+                    <h3>Entscheidung: 8pt/4pt Grid & Goldener Schnitt</h3>
+                    <p><strong>Kategorie:</strong> Layout / Mathematik</p>
+                    <p><strong>Entscheidung:</strong> Strikte Einhaltung des 8pt Grids (4pt für Mikro-Spacing) und Nutzung des Goldenen Schnitts (Phi = 1.618) für Layout-Proportionen.</p>
+                    <p><strong>Begründung:</strong> Mathematische Präzision spiegelt die Disziplin und Zuverlässigkeit des Sicherheitsdienstes wider und sorgt für ein unterbewusst harmonisches Nutzererlebnis.</p>
+                    <p><strong>Datum:</strong> 2026-05-15</p>
+                    <p><strong>Anwendung:</strong> Spacing-Tokens, Container-Breiten, Typo-Skalierung.</p>
+                <section class="decision">
+                    <h3>Entscheidung: Mobile-First Strategy</h3>
+                    <p><strong>Kategorie:</strong> Entwicklung / UX</p>
+                    <p><strong>Entscheidung:</strong> Strikte 'Mobile-First' Entwicklung. Alle Styles werden für Mobile (Baseline) geschrieben und per Media-Queries (min-width) für Desktop erweitert.</p>
+                    <p><strong>Begründung:</strong> Über 60% der Nutzeranfragen erfolgen über mobile Endgeräte. Mobile-First erzwingt zudem eine klare Inhalts-Hierarchie und optimiert die Performance.</p>
+                    <p><strong>Datum:</strong> 2026-05-15</p>
+                    <p><strong>Anwendung:</strong> CSS (main.css), Komponenten-Design.</p>
+                <section class="decision">
+                    <h3>Entscheidung: Funnel-Strategie (AIDA)</h3>
+                    <p><strong>Kategorie:</strong> Strategie / Conversion</p>
+                    <p><strong>Entscheidung:</strong> Die Sektions-Reihenfolge folgt strikt dem AIDA-Modell (Awareness, Interest, Desire, Action), angepasst an die Sicherheitsbranche.</p>
+                    <p><strong>Begründung:</strong> Ein klarer Informationsfluss baut Vertrauen auf und führt den Nutzer gezielt zur Handlung (Anfrage), anstatt ihn mit wahllosen Informationen zu überfordern.</p>
+                    <p><strong>Datum:</strong> 2026-05-15</p>
+                    <p><strong>Anwendung:</strong> Sektions-Reihenfolge der Landingpage.</p>
+                <section class="decision">
+                    <h3>Entscheidung: Call Now FAB (Conversion)</h3>
+                    <p><strong>Kategorie:</strong> Conversion / Komponenten</p>
+                    <p><strong>Entscheidung:</strong> Einführung eines fixierten 'Jetzt anrufen' Buttons (unten RECHTS) mit aktivem Ripple-Effekt.</p>
+                    <p><strong>Begründung:</strong> Ein permanenter Kontaktweg senkt die Hemmschwelle für Anfragen. Der Wellen-Effekt lenkt die Aufmerksamkeit dezent, aber effektiv auf das wichtigste Conversion-Ziel. Mobil-optimierte Größe (50px).</p>
+                    <p><strong>Datum:</strong> 2026-05-15</p>
+                    <p><strong>Anwendung:</strong> Globale Komponente (index.html).</p>
+                </section>
+            </div>
+        </section>
+
+        <!-- COMPONENTS -->
+        <section id="components">
+            <h2>Komponenten</h2>
+            <div class="grid-3col">
+                <div class="card">
+                    <span class="typo-label">Call Now (FAB)</span>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Ein fixierter Button für den direkten telefonischen Kontakt mit aufmerksamkeitsstarkem Wellen-Effekt.</p>
+                    <div style="position: relative; height: 120px; display: flex; align-items: center; justify-content: center; background: var(--color-neutral-050); border-radius: 12px; margin-top: 20px;">
+                        <a href="tel:00000" class="fab-call" style="position: relative; bottom: 0; left: 0;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <span>Jetzt anrufen</span>
+                        </a>
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--color-neutral-400); margin-top: 10px;"><strong>Desktop:</strong> Pillen-Form mit Text. <strong>Mobil:</strong> Kompakter Circle (nur Icon). Wellen-Effekt in Marken-Blau.</p>
+                </div>
+                <div class="card">
+                    <span class="typo-label">Primary Button</span>
+                    <div style="margin-top: 20px;">
+                        <a href="#" class="btn btn--primary">Anfrage senden</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="typo-label">Card Hover Effect</span>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Karten heben sich beim Hover leicht an und erhalten einen subtilen Schatten.</p>
+                </div>
+                <div class="card">
+                    <span class="typo-label">Skeleton State</span>
+                    <div class="shimmer" style="height: 60px; border-radius: 8px; margin-top: 20px;"></div>
+                </div>
+                <div class="card">
+                    <span class="typo-label">Social Icons (Commercial Use)</span>
+                    <div class="social-links" style="margin-top: 20px; color: var(--color-neutral-900);">
+                        <a href="#" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="#" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                        <a href="#" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--color-neutral-500); margin-top: 10px;">Quelle: Lucide Icons (MIT Lizenz - kommerziell sicher).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PERFORMANCE & IMPLEMENTATION -->
+        <section id="performance">
+            <h2>Performance & Implementation</h2>
+            <div class="mobile-instruction">
+                <h3>Font Preloading Strategy</h3>
+                <p style="margin-bottom: 20px;">Um Flash of Unstyled Text (FOUT) zu vermeiden, müssen alle Fonts im HTML Header vorab geladen werden:</p>
+                <pre style="background: var(--color-neutral-900); color: #fff; padding: 20px; border-radius: 8px; font-size: 0.8rem; overflow-x: auto;"><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Inter:wght@400;500&family=Space+Grotesk:wght@700&display=swap"&gt;</code></pre>
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="text-align: center; padding: 100px 0; background: var(--color-neutral-900); color: var(--color-neutral-400);">
+        <p>© 2026 MTGM Sicherheitsdienst — Design Manual v1.0</p>
+    </footer>
+
+</body>
+</html>

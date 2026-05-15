@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTGM Sicherheitsdienst — Sicherheit durch Kompetenz & Disziplin</title>
+    <meta name="description" content="MTGM Sicherheitsdienst unter der Leitung von Weltmeister Sebastian Harms-Mendez. Ihr Partner für Veranstaltungsschutz, Objektschutz und Deeskalation in Überlingen.">
+    
+    <!-- SEO & Open Graph -->
+    <meta property="og:title" content="MTGM Sicherheitsdienst — Professioneller Schutz">
+    <meta property="og:description" content="Psychologischer Ansatz & Kampfsport-Disziplin. Ihr Sicherheitsdienst für Überlingen und Umgebung.">
+    <meta property="og:type" content="website">
+    
+    <!-- Font Preloading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Performance: Preload Hero Image -->
+    <link rel="preload" as="image" href="public/images/Hero Image.jpg">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="public/css/main.css">
+    
+    <style>
+        /* Hide scrollbar for all browsers */
+        html {
+            scroll-behavior: smooth; /* Native smooth scroll */
+        }
+        html, body {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        section {
+            scroll-margin-top: 100px; /* Offset for fixed header */
+        }
+
+        /* Section Specific Styles (Mobile First) */
+        .hero {
+            padding: 160px 0 var(--space-800); /* Increased top padding */
+            background: var(--color-neutral-900) url('public/images/Hero Image.jpg') center/cover no-repeat;
+            background-attachment: fixed; /* Parallax effect */
+            color: #fff;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            min-height: 90vh;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 30%, rgba(15, 23, 42, 0.2) 100%);
+            z-index: 2;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 3;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 70vh;
+                padding: var(--space-600) 0;
+                background-position: 70% center; /* Adjust focus for mobile */
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: var(--space-200);
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.1;
+            max-width: 900px;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            max-width: 600px;
+            margin: 0 0 var(--space-400);
+            color: var(--color-neutral-300);
+            font-weight: 400;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: var(--space-200);
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        /* Nav */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1200px;
+            z-index: 1000;
+            background: var(--color-primary-400); /* Corporate Blue */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            padding: var(--space-100) var(--space-400);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled {
+            top: 10px;
+            width: 98%;
+            background: #ffffff; /* Solid White */
+            padding: 8px var(--space-400);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--color-neutral-100);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: none;
+            padding: 0;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            display: block;
+            filter: brightness(0) invert(1); /* Force White Logo */
+            transition: var(--transition-base);
+        }
+
+        header.scrolled .logo img {
+            filter: none; /* Restore Original Blue Logo */
+        }
+
+        /* Desktop Nav Links */
+        .nav-links {
+            display: none;
+            gap: var(--space-400);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (min-width: 992px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        /* Mobile Nav Links */
+        @media (max-width: 991px) {
+            header {
+                top: 10px;
+                padding: var(--space-100) var(--space-300);
+                border-radius: 50px;
+            }
+            .nav-links {
+                display: none; /* Controlled by JS .active class */
+                position: fixed;
+                top: 75px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                background: #ffffff;
+                flex-direction: column;
+                padding: var(--space-400);
+                border-radius: var(--radius-lg);
+                box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+                text-align: center;
+                border: 1px solid var(--color-neutral-100);
+                z-index: 999;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                color: var(--color-neutral-800) !important; /* Always dark on mobile background */
+                padding: var(--space-200);
+            }
+            .nav-links a::after {
+                display: none; /* Hide indicator on mobile */
+            }
+            .logo img { height: 40px; }
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff; /* Default: White in Hero */
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: var(--transition-base);
+            display: block;
+            position: relative;
+        }
+
+        header.scrolled .nav-links a {
+            color: var(--color-neutral-700); /* Dark when scrolled */
+        }
+
+        .nav-links a.active {
+            color: #ffffff;
+        }
+
+        header.scrolled .nav-links a.active {
+            color: var(--color-primary-400);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        header.scrolled .nav-links a::after {
+            background: var(--color-primary-300);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary-300);
+        }
+
+        .nav-links.active { display: flex; }
+
+        .social-icon {
+            color: #ffffff; /* White icons in Hero */
+            transition: var(--transition-base);
+            display: flex;
+            align-items: center;
+        }
+
+        header.scrolled .social-icon {
+            color: var(--color-neutral-700); /* Dark icons when scrolled */
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            margin-left: auto;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: #ffffff; /* White bars in Hero */
+            transition: var(--transition-base);
+        }
+
+        header.scrolled .hamburger span {
+            background: var(--color-neutral-900); /* Dark bars when scrolled */
+        }
+
+        @media (min-width: 992px) {
+            .nav-links {
+                display: flex;
+                position: static;
+                flex-direction: row;
+                width: auto;
+                background: none;
+                padding: 0;
+                box-shadow: none;
+                border: none;
+                gap: var(--space-400);
+            }
+            .hamburger { display: none; }
+            .logo img { height: 65px; }
+        }
+
+        /* Visibility Helpers */
+        .desktop-only { display: none; }
+        .mobile-only { display: none; }
+        
+        @media (max-width: 991px) {
+            .mobile-only { display: block; }
+        }
+        
+        @media (min-width: 992px) {
+            .desktop-only { display: flex; }
+        }
+
+        /* Contact Grid Fix */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-600);
+            align-items: start;
+        }
+
+        @media (max-width: 991px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-400);
+            }
+            .contact-grid .card {
+                order: -1; /* Form on top on mobile if preferred, or keep as is */
+            }
+        }
+
+        /* Service Cards */
+        .services { padding: var(--space-800) 0; background: var(--color-neutral-050); }
+        .service-card {
+            background: #fff;
+            padding: var(--space-500);
+            border-radius: var(--radius-base);
+            border: 1px solid var(--color-neutral-100);
+            transition: var(--transition-base);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-200);
+        }
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+
+        /* Bento Gallery */
+        .gallery { padding: var(--space-800) 0; }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 200px;
+            gap: var(--space-300);
+        }
+
+        .bento-item {
+            background: var(--color-neutral-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bento-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top; /* Ensure faces are visible */
+            transition: var(--transition-base);
+        }
+
+        .bento-item:hover img { transform: scale(1.08); }
+
+        @media (max-width: 768px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: var(--space-100); }
+            .hero { padding: var(--space-500) 0; }
+            .bento-item:last-child { grid-column: span 2; }
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-600);
+            align-items: center;
+        }
+
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        /* Visibility Helpers */
+        .desktop-only { display: none; }
+        .mobile-only { display: block; }
+        @media (min-width: 992px) {
+            .desktop-only { display: flex; }
+            .mobile-only { display: none; }
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--space-800) 0;
+            background: var(--color-neutral-900);
+            color: var(--color-neutral-400);
+            text-align: center;
+        }
+        footer .logo img { height: 80px; filter: brightness(10); margin-bottom: var(--space-400); }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="public/images/logo-blue.svg" alt="MTGM Sicherheitsdienst Logo">
+            </a>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#services">Dienstleistungen</a></li>
+                    <li><a href="#about">Philosophie</a></li>
+                    <li><a href="#gallery">Referenzen</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                    <li class="mobile-only" style="margin-top: 20px; border-top: 1px solid var(--color-neutral-100); padding-top: 20px;">
+                        <div style="display: flex; gap: 20px;">
+                            <a href="#" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                            <a href="https://www.instagram.com/mtgm.sicherheitsdienst/" target="_blank" rel="noopener" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="social-links desktop-only">
+                <a href="#" class="social-icon" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="https://www.instagram.com/mtgm.sicherheitsdienst/" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+            </div>
+    </header>
+
+
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container" style="animation: heroFadeIn 1s ease-out forwards;">
+            <span class="typo-label" style="color: var(--color-primary-200); margin-bottom: var(--space-200); display: block; letter-spacing: 0.1em;">SEIT 2014 IHR PARTNER FÜR SICHERHEIT</span>
+            <h1>Sicherheit durch Kompetenz & Disziplin.</h1>
+            <p>MTGM kombiniert jahrelange Erfahrung mit der mentalen Stärke eines Weltmeisters. Wir garantieren Schutz auf höchstem Niveau – präzise, diskret und deeskalierend.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn--primary">Beratungsgespräch anfordern</a>
+                <a href="tel:017672844413" class="btn" style="border: 2px solid rgba(255,255,255,0.3); color: #fff;">0176 / 728 444 13</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services (Compact Cards) -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="reveal" style="text-align: center; margin-bottom: var(--space-600); font-family: 'Space Grotesk', sans-serif;">Unsere Einsatzgebiete</h2>
+            <div class="grid-3col">
+                <article class="service-card reveal reveal-delay-1">
+                    <div style="color: var(--color-primary-300); margin-bottom: var(--space-100);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3 style="color: var(--color-primary-300);">Veranstaltungsschutz</h3>
+                    <p style="font-size: 0.95rem;">Von Konzerten bis zu Stadtfesten. Wir sorgen für Sicherheit, ohne die Atmosphäre zu stören.</p>
+                </article>
+                <article class="service-card reveal reveal-delay-2">
+                    <div style="color: var(--color-primary-300); margin-bottom: var(--space-100);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </div>
+                    <h3 style="color: var(--color-primary-300);">Objektschutz</h3>
+                    <p style="font-size: 0.95rem;">Sicherungskonzepte für Gelände, Nachtwachen und Spezialobjekte mit höchster Zuverlässigkeit.</p>
+                </article>
+                <article class="service-card reveal reveal-delay-3">
+                    <div style="color: var(--color-primary-300); margin-bottom: var(--space-100);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3 style="color: var(--color-primary-300);">Exklusive Einsätze</h3>
+                    <p style="font-size: 0.95rem;">Diskrete Absicherung hochkarätiger Events mit Fokus auf psychologische Deeskalation.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy / Founder -->
+    <section id="about" style="padding: var(--space-800) 0; background: var(--color-primary-500); color: #fff; overflow: hidden;">
+        <div class="container reveal">
+            <div class="about-grid">
+                <div style="position: relative;">
+                    <div style="background: var(--color-primary-400); border-radius: var(--radius-lg); overflow: hidden; transform: rotate(-2deg); box-shadow: 20px 20px 60px rgba(0,0,0,0.3);">
+                        <img src="public/images/chef-action.png" alt="Sebastian Harms-Mendez und Team — MTGM" style="width: 100%; height: auto; display: block; filter: contrast(1.1);" loading="lazy">
+                    </div>
+                </div>
+                <div>
+                    <span class="typo-label" style="color: var(--color-primary-200); letter-spacing: 0.1em;">UNSERE PHILOSOPHIE</span>
+                    <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 2.8rem); margin: var(--space-200) 0 var(--space-400);">Deeskalation durch Psychologie</h2>
+                    <p style="font-size: 1.15rem; line-height: 1.7; color: var(--color-primary-100); margin-bottom: var(--space-300);">
+                        Inhaber <strong>Sebastian Harms-Mendez</strong>, Kick- und Thaibox-Weltmeister, bringt die Disziplin und mentale Stärke des Profisports in die Welt der Sicherheit. 
+                    </p>
+                    <p style="font-size: 1.15rem; line-height: 1.7; color: var(--color-primary-100);">
+                        Wir setzen auf Überzeugungsarbeit statt Gewalt. Unser Team ist geschult darin, Konflikte frühzeitig zu erkennen und durch psychologisches Geschick friedlich zu lösen. <em>"Sicherheit beginnt im Kopf."</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery (Bento - Real Team Images) -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="reveal" style="text-align: center; margin-bottom: var(--space-600); font-family: 'Space Grotesk', sans-serif;">MTGM in Aktion</h2>
+            <div class="bento-grid">
+                <div class="bento-item reveal" style="grid-column: span 2; grid-row: span 2;">
+                    <img src="public/images/team-1.jpg" alt="MTGM Sicherheitsdienst Team" loading="lazy">
+                </div>
+                <div class="bento-item reveal reveal-delay-1">
+                    <img src="public/images/hero-1.png" alt="MTGM Einsatz" loading="lazy">
+                </div>
+                <div class="bento-item reveal reveal-delay-2">
+                    <img src="public/images/team-2.jpg" alt="MTGM Professionalität" loading="lazy">
+                </div>
+                <div class="bento-item reveal reveal-delay-1">
+                    <img src="public/images/hero-2.png" alt="MTGM Veranstaltungsschutz" loading="lazy">
+                </div>
+                <div class="bento-item reveal reveal-delay-2">
+                    <img src="public/images/hero-5.png" alt="MTGM Team" loading="lazy">
+                </div>
+                <div class="bento-item reveal reveal-delay-3">
+                    <img src="public/images/hero-4.png" alt="MTGM Überwachung" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="padding: var(--space-800) 0; background: var(--color-neutral-050);">
+        <div class="container">
+            <div class="contact-grid">
+                <div>
+                    <h2 style="font-family: 'Space Grotesk', sans-serif; margin-bottom: var(--space-300);">Bereit für Ihre Sicherheit?</h2>
+                    <p style="margin-bottom: var(--space-400);">Lassen Sie uns gemeinsam ein individuelles Sicherheitskonzept für Ihr Vorhaben entwickeln. Kostenlos und unverbindlich.</p>
+                    <div style="display: flex; flex-direction: column; gap: var(--space-200);">
+                        <strong>MTGM Sicherheitsdienst</strong>
+                        <span>Im Weiherhof 2, 88662 Überlingen</span>
+                        <span>Tel: 0176 / 728 444 13</span>
+                        <span>Mail: mtgm.sec@gmail.com</span>
+                    </div>
+                </div>
+                <div class="card" style="padding: var(--space-500);">
+                    <form action="#" method="POST" style="display: flex; flex-direction: column; gap: var(--space-300);">
+                        <input type="text" placeholder="Name / Firma" required style="padding: var(--space-200); border-radius: var(--radius-base); border: 1px solid var(--color-neutral-200);">
+                        <input type="email" placeholder="E-Mail" required style="padding: var(--space-200); border-radius: var(--radius-base); border: 1px solid var(--color-neutral-200);">
+                        <textarea placeholder="Was können wir für Sie tun?" required style="padding: var(--space-200); border-radius: var(--radius-base); border: 1px solid var(--color-neutral-200); height: 150px;"></textarea>
+                        <button type="submit" class="btn btn--primary" style="width: 100%;">Anfrage senden</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="public/images/logo-white.svg" alt="MTGM Logo">
+            </a>
+            <p style="margin-top: var(--space-200);">© 2026 MTGM Sicherheitsdienst — Inh. Sebastian Harms-Mendez</p>
+            <div style="margin-top: var(--space-400); display: flex; justify-content: center; gap: var(--space-400);">
+                <a href="impressum.html" style="color: inherit; text-decoration: none; font-size: 0.9rem;">Impressum</a>
+                <a href="datenschutz.html" style="color: inherit; text-decoration: none; font-size: 0.9rem;">Datenschutz</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Call Now FAB -->
+    <a href="tel:017672844413" class="fab-call" aria-label="Jetzt anrufen">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <span>Jetzt anrufen</span>
+    </a>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll Reveal Logic
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ScrollSpy Logic
+        const sections = document.querySelectorAll('section[id]');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        const spyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navItems.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        sections.forEach(section => spyObserver.observe(section));
+    </script>
+</body>
+</html>
